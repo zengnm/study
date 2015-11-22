@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+    http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+    http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"
+       default-lazy-init="false" default-autowire="byName">
+
+    <!--  -->
+    <import resource="classpath:spring-config-authen.xml"/>
+
+    <context:component-scan base-package="com.share.example.web.controller"/>
+    <aop:aspectj-autoproxy expose-proxy="true"/>
+    <context:annotation-config/>
+
+    <mvc:annotation-driven><!-- conversion-service="conversionService">-->
+        <!--<mvc:message-converters register-defaults="true">-->
+            <!--<bean class="com.jd.dujia.common.UTF8StringHttpMessageConverter">-->
+                <!--<property name="supportedMediaTypes">-->
+                    <!--<list>-->
+                        <!--<value>text/html;charset=UTF-8</value>-->
+                        <!--<value>application/json; charset=UTF-8</value>-->
+                    <!--</list>-->
+                <!--</property>-->
+            <!--</bean>-->
+        <!--</mvc:message-converters>-->
+    </mvc:annotation-driven>
+    <mvc:default-servlet-handler/>
+
+    <!-- static resources -->
+    <mvc:resources location="/static/" mapping="/static/**"
+                   cache-period="864000"/>
+    <!-- 24 * 3600 * 10 -->
+
+    <util:map id="velocityTools">
+        <!--系统本身的-->
+        <entry key="homeModule">
+            <bean class="com.jd.common.web.url.JdUrl">
+                <property name="url" value="http://${example.domain.name}/"/>
+            </bean>
+        </entry>
+        <entry key="exampleModule">
+            <bean class="com.jd.common.web.url.JdUrl">
+                <property name="url" value="http://${example.domain.name}/"/>
+            </bean>
+        </entry>
+        <entry key="stringEscapeUtils">
+            <bean class="com.jd.common.util.StringEscapeUtils"/>
+        </entry>
+        <entry key="dateFormatUtils">
+            <bean class="com.jd.common.util.DateFormatUtils"/>
+        </entry>
+        <entry key="dateUtils">
+            <bean class="org.apache.commons.lang.time.DateUtils"/>
+        </entry>
+        <entry key="localHost">
+            <bean class="com.jd.common.network.LocalHost"/>
+        </entry>
+        <entry key="decimalFormatUtils">
+            <bean class="com.jd.common.util.DecimalFormatUtils"/>
+        </entry>
+        <entry key="numberUtils">
+            <bean class="org.apache.commons.lang.math.NumberUtils"/>
+        </entry>
+        <!--<entry key="encodeUtils">-->
+            <!--<bean class="com.jd.dujia.domain.util.EncodeUtils"/>-->
+        <!--</entry>-->
+    </util:map>
+
+    <!-- template view -->
+    <bean id="velocityConfig"
+          class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+        <property name="resourceLoaderPath" value="/WEB-INF/vm"/>
+        <property name="velocityProperties">
+            <props>
+                <prop key="input.encoding">UTF-8</prop>
+                <prop key="output.encoding">UTF-8</prop>
+                <prop key="contentType">text/html;charset=UTF-8</prop>
+                <prop key="velocimacro.library">macro.vm</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="velocityViewResolver"
+          class="org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver">
+        <property name="layoutUrl" value="/layout/default.vm"/>
+        <property name="cache" value="false"/>
+        <property name="suffix" value=".vm"/>
+        <property name="exposeSpringMacroHelpers" value="true"/>
+        <property name="dateToolAttribute" value="dateTool"/>
+        <property name="numberToolAttribute" value="numberTool"/>
+        <property name="contentType" value="text/html;charset=UTF-8"/>
+        <property name="attributesMap" ref="velocityTools"/>
+    </bean>
+
+
+    <!-- locale related -->
+    <bean id="localeResolver"
+          class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+        <property name="cookieName" value="_clientlocale"/>
+        <property name="defaultLocale" value="zh_CN"/>
+        <property name="cookieMaxAge" value="2147483647"/>
+    </bean>
+
+    <!-- exception related -->
+    <!-- all exception handler will be registered by DispatcherServlet default
+         (detectAllHandlerExceptionResolvers=true) -->
+    <!--<bean-->
+            <!--class="com.jd.dujia.man.web.interceptor.DujiaMappingExceptionResolver">-->
+        <!--<property name="defaultErrorView" value="error"/>-->
+        <!--<property name="exceptionMappings">-->
+            <!--<props>-->
+                <!--&lt;!&ndash;                <prop key="java.lang.RuntimeException">error/access-denied</prop>-->
+               <!--<prop key="com.jd.erp.info.exception.AssetEtmsException">error/access-denied</prop>-->
+               <!--<prop key="com.jd.erp.info.exception.AssetEtmsUserException">error/access-denied</prop>-->
+               <!--&lt;!&ndash;<prop key="com.jd.etms.info.exception.LockForCheckException">error/access-lock</prop>&ndash;&gt;-->
+               <!--<prop key="org.springframework.web.multipart.MaxUploadSizeExceededException">error/access-img-error</prop>&ndash;&gt;-->
+                <!--<prop key="java.lang.RuntimeException">error</prop>-->
+                <!--<prop key="com.jd.dujia.exception.DujiaException">error</prop>-->
+                <!--<prop key="java.lang.Exception">error</prop>-->
+                <!--<prop key="java.lang.Throwable">error</prop>-->
+                <!--&lt;!&ndash;<prop key="com.jd.etms.info.exception.LockForCheckException">error/access-lock</prop>&ndash;&gt;-->
+                <!--<prop key="org.springframework.web.multipart.MaxUploadSizeExceededException">error</prop>-->
+            <!--</props>-->
+        <!--</property>-->
+    <!--</bean>-->
+    <!--<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">-->
+        <!--<property name="converters">-->
+            <!--<set>-->
+                <!--<bean class="com.jd.dujia.common.StringToDateConverter"/>-->
+            <!--</set>-->
+        <!--</property>-->
+    <!--</bean>-->
+
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- -->
+        <!--<property name="maxUploadSize" value="1000000"/>  -->
+    </bean>
+
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="com.share.example.web.interceptor.RequestRefererInterceptor">
+                <property name="invalidRedirectUrl" value="${example.home.address}"/>
+            </bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+</beans>

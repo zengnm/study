@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/repos/java-example/!svn/ver/43/trunk/example/example-web/src/main/webapp/db
+END
+create_database_20100820v1.sql
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/repos/java-example/!svn/ver/40/trunk/example/example-web/src/main/webapp/db/create_database_20100820v1.sql
+END
+example.pdm
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/repos/java-example/!svn/ver/43/trunk/example/example-web/src/main/webapp/db/example.pdm
+END

@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/repos/java-example/!svn/ver/24/trunk/example/example-web/src/main/webapp/WEB-INF/vm/example
+END
+add.vm
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/repos/java-example/!svn/ver/24/trunk/example/example-web/src/main/webapp/WEB-INF/vm/example/add.vm
+END
+list.vm
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/repos/java-example/!svn/ver/24/trunk/example/example-web/src/main/webapp/WEB-INF/vm/example/list.vm
+END
+doAdd.vm
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/repos/java-example/!svn/ver/20/trunk/example/example-web/src/main/webapp/WEB-INF/vm/example/doAdd.vm
+END

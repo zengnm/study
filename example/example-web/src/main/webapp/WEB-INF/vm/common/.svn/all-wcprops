@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/repos/java-example/!svn/ver/46/trunk/example/example-web/src/main/webapp/WEB-INF/vm/common
+END
+head.vm
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/repos/java-example/!svn/ver/3/trunk/example/example-web/src/main/webapp/WEB-INF/vm/common/head.vm
+END
+bottom.vm
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/repos/java-example/!svn/ver/46/trunk/example/example-web/src/main/webapp/WEB-INF/vm/common/bottom.vm
+END

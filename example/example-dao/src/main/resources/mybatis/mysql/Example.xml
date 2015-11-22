@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.share.example.dao.example.impl.ExampleDaoImpl">
+    <sql id="exampleAllRow">
+        id, name, type, created, modified
+    </sql>
+
+    <resultMap id="ExampleResultMap" type="com.share.example.domain.example.Example">
+        <result property="id" column="id" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+        <result property="name" column="name"/>
+        <result property="type" column="type" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+        <result property="created" column="created"/>
+        <result property="modified" column="modified"/>
+    </resultMap>
+
+    <sql id="condition">
+        WHERE 1 = 1
+        <if test="name != null">
+            AND name = #{name}
+        </if>
+        <if test="type != null">
+            AND type = #{type}
+        </if>
+    </sql>
+
+    <select id="findExampleById" parameterType="java.lang.Integer" resultType="com.share.example.domain.example.Example">
+        select <include refid="exampleAllRow"/>
+         from example
+         where id = #{id}
+    </select>
+
+    <insert id="createExample" parameterType="com.share.example.domain.example.Example">
+        insert into example (<include refid="exampleAllRow"/>)
+        values (#{id}, #{name}, #{type}, now(), now())
+    </insert>
+
+
+    <select id="getExamplesCount" parameterType="com.share.example.domain.example.Example" resultType="int">
+        select count(1) as total from example
+        <include refid="condition"/>
+    </select>
+
+    <select id="findExamplesPage" parameterType="com.share.example.domain.example.Example"  resultMap="ExampleResultMap">
+        select <include refid="exampleAllRow"/> from example
+        <include refid="condition"/>
+    </select>
+    <delete id="deleteExample" parameterType="com.share.example.domain.example.Example">
+        DELETE
+        FROM example
+        WHERE id = #{id}
+    </delete>
+    <update id="updateExample" parameterType="com.share.example.domain.example.Example">
+        UPDATE example
+        SET name = #{name}, type = #{type}, modified = now()
+        WHERE id = #{id}
+    </update>
+</mapper>

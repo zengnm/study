@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd"
+       default-autowire="byName">
+
+
+    <!--<bean id="requstPathExcluder" class="com.jd.common.web.RequstPathExcluder">-->
+        <!--<property name="excludePath" value="/static,/hessian,/rest,/soap,/common"/>-->
+    <!--</bean>-->
+
+    <mvc:interceptors>
+        <!--<mvc:interceptor>-->
+            <!--&lt;!&ndash; 需要登录的路径&ndash;&gt;-->
+            <!--<mvc:mapping path="/login/**"/>-->
+            <!--<bean id="springMvcInterceptor" class="com.share.example.web.interceptor.LoginInterceptor">-->
+                <!--<property name="cookieName" value="${passport.checkLogin.cookieName}"/>-->
+                <!--<property name="authenticationKey" value="${passport.checkLogin.authenticationKey}"/>-->
+                <!--<property name="loginUrl" value="${passport.checkLogin.loginUrl}"/>-->
+                <!--<property name="charsetName" value="${passport.checkLogin.charsetName}"/>-->
+                <!--<property name="URIEncoding" value="${passport.checkLogin.uriEncoding}"/>-->
+                <!--&lt;!&ndash;<property name="remoteServiceCaller" ref="remoteServiceCaller"/>&ndash;&gt;-->
+            <!--</bean>-->
+        <!--</mvc:interceptor>-->
+        <bean id="commonInterceptor" class="com.share.example.web.interceptor.CommonInterceptor" />
+    </mvc:interceptors>
+</beans>

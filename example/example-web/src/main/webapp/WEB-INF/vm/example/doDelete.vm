@@ -1,0 +1,6 @@
+#if($result.success)
+您已经成功删除。 <br/>
+<a href="list.action">点击这儿点到列表</a>
+#else
+    #parse("/example/delete.vm")
+#end

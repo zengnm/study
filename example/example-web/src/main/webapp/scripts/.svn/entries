@@ -1,0 +1,35 @@
+10
+
+dir
+0
+http://svn1.360buy-develop.com/repos/java-example/trunk/example/example-web/src/main/webapp/scripts
+http://svn1.360buy-develop.com/repos/java-example
+add
+
+
+
+
+
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+85934bbe-2bd5-4295-b352-a5484bd27bb4
+
+jquery
+dir
+
+
+
+add
+

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>example</artifactId>
+        <groupId>com.share.example</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>example-web</artifactId>
+    <packaging>war</packaging>
+    <name>example web</name>
+    <dependencies>
+
+        <!--urlRewrite-->
+        <dependency>
+            <groupId>org.tuckey</groupId>
+            <artifactId>urlrewritefilter</artifactId>
+            <version>3.2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+        </dependency>
+        <!-- web start -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.velocity</groupId>
+            <artifactId>velocity</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.ws.rs</groupId>
+            <artifactId>jsr311-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>taglibs</groupId>
+            <artifactId>standard</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.barcode4j</groupId>
+            <artifactId>barcode4j</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>avalon-framework</groupId>
+            <artifactId>avalon-framework-api</artifactId>
+        </dependency>
+        <!-- solo -->
+        <dependency>
+            <groupId>commons-collections</groupId>
+            <artifactId>commons-collections</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>velocity-tools</groupId>
+            <artifactId>velocity-tools</artifactId>
+            <version>1.2</version>
+        </dependency>
+        <!-- solo end -->
+
+        <!--<dependency>-->
+        <!--<groupId>com.jd</groupId>-->
+        <!--<artifactId>erp-sso</artifactId>-->
+        <!--<version>1.0.5</version>-->
+        <!--<exclusions>-->
+        <!--<exclusion>-->
+        <!--<groupId>org.springframework</groupId>-->
+        <!--<artifactId>spring</artifactId>-->
+        <!--</exclusion>-->
+        <!--</exclusions>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+        <!--<groupId>com.jd.user.passport</groupId>-->
+        <!--<artifactId>passport-checkLogin</artifactId>-->
+        <!--<version>1.5.3-SNAPSHOT</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+        <!--<groupId>com.jd.passport</groupId>-->
+        <!--<artifactId>login-server-rpc</artifactId>-->
+        <!--<version>5.1.4-SNAPSHOT</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>com.jd.dujia</groupId>-->
+            <!--<artifactId>jd-dujia-service</artifactId>-->
+            <!--<version>1.0.0</version>-->
+        <!--</dependency>-->
+
+
+        <dependency>
+            <groupId>com.share.example</groupId>
+            <artifactId>example-service</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
+    <properties>
+        <!--log4j-->
+        <example.log.path>/logs-share-example/path</example.log.path>
+        <example.log.level>/logs-share-example/level</example.log.level>
+
+        <!--获取资源文件的url-->
+        <dujia.misc.domain.name>misc.360buyimg.com</dujia.misc.domain.name>
+        <vacation.login.domain.name>passport.jd.com</vacation.login.domain.name>
+        <vacation.imgserver10.domain.name>img10.360buyimg.com</vacation.imgserver10.domain.name>
+        <vacation.imgserver11.domain.name>img11.360buyimg.com</vacation.imgserver11.domain.name>
+        <vacation.imgserver12.domain.name>img12.360buyimg.com</vacation.imgserver12.domain.name>
+        <vacation.imgserver13.domain.name>img13.360buyimg.com</vacation.imgserver13.domain.name>
+        <vacation.imgserver14.domain.name>img14.360buyimg.com</vacation.imgserver14.domain.name>
+        <vacation.imgserver30.domain.name>img30.360buyimg.com</vacation.imgserver30.domain.name>
+
+        <!--域名-->
+        <example.domain.name>example.share.com</example.domain.name>
+        <example.home.address>example.share.com</example.home.address>
+
+        <!--身份认证相关-->
+        <passport.checkLogin.cookieName>ceshi3.com</passport.checkLogin.cookieName>
+        <passport.checkLogin.authenticationKey>8B6697227CBCA902B1A0925D40FAA00B353F2DF4359D2099</passport.checkLogin.authenticationKey>
+        <passport.checkLogin.loginUrl>http://passport.jd.com/new/login.aspx</passport.checkLogin.loginUrl>
+        <passport.checkLogin.charsetName>GBK</passport.checkLogin.charsetName>
+        <passport.checkLogin.uriEncoding>GBK</passport.checkLogin.uriEncoding>
+
+        <!--datasource-->
+        <datasourceDujia.driverClassName>com.mysql.jdbc.Driver</datasourceDujia.driverClassName>
+        <datasourceDujia.url>jdbc:mysql://127.0.0.1:3306/popdb?characterEncoding=UTF-8</datasourceDujia.url>
+        <datasourceDujia.username>root</datasourceDujia.username>
+        <datasourceDujia.password>123456</datasourceDujia.password>
+        <datasourceDujia.defaultAutoCommit>false</datasourceDujia.defaultAutoCommit>
+        <datasourceDujia.initialSize>1</datasourceDujia.initialSize>
+        <datasourceDujia.maxActive>20</datasourceDujia.maxActive>
+        <datasourceDujia.maxIdle>5</datasourceDujia.maxIdle>
+        <datasourceDujia.minIdle>2</datasourceDujia.minIdle>
+        <datasourceDujia.maxWait>1000</datasourceDujia.maxWait>
+        <datasourceDujia.minEvictableIdleTimeMillis>300000</datasourceDujia.minEvictableIdleTimeMillis>
+        <datasourceDujia.timeBetweenEvictionRunsMillis>120000</datasourceDujia.timeBetweenEvictionRunsMillis>
+    </properties>
+
+    <build>
+        <finalName>example-web</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+    </build>
+</project>
