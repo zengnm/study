@@ -12,8 +12,10 @@
     http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"
        default-lazy-init="false" default-autowire="byName">
 
-    <!--  -->
+    <!-- 认证 -->
     <import resource="classpath:spring-config-authen.xml"/>
+    <!-- 安全-->
+    <!--<import resource="spring-config-security.xml"/>-->
 
     <context:component-scan base-package="com.share.example.web.controller"/>
     <aop:aspectj-autoproxy expose-proxy="true"/>
@@ -111,25 +113,23 @@
     <!-- exception related -->
     <!-- all exception handler will be registered by DispatcherServlet default
          (detectAllHandlerExceptionResolvers=true) -->
-    <!--<bean-->
-            <!--class="com.jd.dujia.man.web.interceptor.DujiaMappingExceptionResolver">-->
-        <!--<property name="defaultErrorView" value="error"/>-->
-        <!--<property name="exceptionMappings">-->
-            <!--<props>-->
-                <!--&lt;!&ndash;                <prop key="java.lang.RuntimeException">error/access-denied</prop>-->
-               <!--<prop key="com.jd.erp.info.exception.AssetEtmsException">error/access-denied</prop>-->
-               <!--<prop key="com.jd.erp.info.exception.AssetEtmsUserException">error/access-denied</prop>-->
-               <!--&lt;!&ndash;<prop key="com.jd.etms.info.exception.LockForCheckException">error/access-lock</prop>&ndash;&gt;-->
-               <!--<prop key="org.springframework.web.multipart.MaxUploadSizeExceededException">error/access-img-error</prop>&ndash;&gt;-->
-                <!--<prop key="java.lang.RuntimeException">error</prop>-->
-                <!--<prop key="com.jd.dujia.exception.DujiaException">error</prop>-->
-                <!--<prop key="java.lang.Exception">error</prop>-->
-                <!--<prop key="java.lang.Throwable">error</prop>-->
-                <!--&lt;!&ndash;<prop key="com.jd.etms.info.exception.LockForCheckException">error/access-lock</prop>&ndash;&gt;-->
-                <!--<prop key="org.springframework.web.multipart.MaxUploadSizeExceededException">error</prop>-->
-            <!--</props>-->
-        <!--</property>-->
-    <!--</bean>-->
+    <bean class="com.share.example.web.interceptor.ExampleMappingExceptionResolver">
+        <property name="defaultErrorView" value="error"/>
+        <property name="exceptionMappings">
+            <props>
+                <!--<prop key="java.lang.RuntimeException">error/access-denied</prop>-->
+                <!--<prop key="com.jd.erp.info.exception.AssetEtmsException">error/access-denied</prop>-->
+                <!--<prop key="com.jd.erp.info.exception.AssetEtmsUserException">error/access-denied</prop>-->
+                <!--<prop key="com.jd.etms.info.exception.LockForCheckException">error/access-lock</prop>-->
+                <!--<prop key="org.springframework.web.multipart.MaxUploadSizeExceededException">error/access-img-error</prop>-->
+                <prop key="java.lang.RuntimeException">error</prop>
+                <prop key="java.lang.Exception">error</prop>
+                <prop key="java.lang.Throwable">error</prop>
+                <!--<prop key="com.jd.etms.info.exception.LockForCheckException">error/access-lock</prop>-->
+                <prop key="org.springframework.web.multipart.MaxUploadSizeExceededException">error</prop>
+            </props>
+        </property>
+    </bean>
     <!--<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">-->
         <!--<property name="converters">-->
             <!--<set>-->

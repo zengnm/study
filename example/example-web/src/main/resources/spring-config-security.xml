@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns="http://www.springframework.org/schema/security"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans-3.1
+                http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+                http://www.springframework.org/schema/security-3.1
+                http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+    <!--启用注解@Security-->
+    <global-method-security secured-annotations="enabled"/>
+    <!--启用注解@RolesAllowed,与@Security可共存-->
+    <global-method-security jsr250-annotations="enabled"/>
+    <!--&lt;!&ndash;启用注解@PreAuthorize、@PostAuthorize、@PostFilter、@PreFilter&ndash;&gt;-->
+    <!--<global-method-security pre-post-annotations="enabled"/>-->
+
+    <!-- Spring Security采用就近原则,有多个约束时,从上至下只要找到第一条满足就返回,因此
+    应该将最严格的约束放在最前面,而将最宽松的约束放在最后面.auto-config属性可以让spring
+    security为我们自动配置几种常用的权限控制机制,包括form,anonymous, rememberMe等。当然
+    你也可以手工配置。-->
+    <http auto-config="true">
+        <!-- 我们利用intercept-url来判断用户需要具有何种权限才能访问对应的url资源，可以
+        在pattern中指定一个特定的url资源，也可以使用通配符指定一组类似的url资源。例子中
+        定义的两个intercepter-url，第一个用来控制对/security/**的访问，第二个使用了通配
+        符/**，说明它将控制对系统中所有url资源的访问。 -->
+        <intercept-url pattern="/security/**" access="ROLE_ADMIN"/>
+        <intercept-url pattern="/**" access="ROLE_ADMIN,ROLE_USER"/>
+        <!-- 需使用use-expressions="true" 属性-->
+        <!--<intercept-url pattern="/**" access="hasRole('ROLE_ADMIN') and hasRole('ROLE_USER')"/>-->
+
+        <!-- 自定义登录-->
+        <!--<form-login login-processing-url="/j_spring_security_check"-->
+        <!--login-page="/vm/login.vm"-->
+        <!--authentication-failure-url="/login?login_error=t"/>-->
+        <!-- 自定义退出-->
+        <!--<logout logout-url="/j_spring_security_logout"-->
+        <!--logout-success-url="/j_spring_security_check" />-->
+
+        <!-- 记住我 cookie:用户名、密码、过期时间、私钥;登录表单必须包含参数
+        _spring_security_remember_me,用于标识是否启用-->
+        <!--<remember-me key="12345" token-validity-seconds="3600" />-->
+    </http>
+
+    <!--使用内存权限管理的配置信息, 在tomcat启动时,会加载这个文件并一直保存在内存中,知道
+    应用程序重启,所以也叫内存权限管理-->
+    <user-service id="userService">
+        <user name="admin" password="654321" authorities="ROLE_ADMIN"/>
+        <user name="user" password="123456" authorities="ROLE_USER"/>
+    </user-service>
+    <authentication-manager>
+        <authentication-provider user-service-ref="userService"/>
+    </authentication-manager>
+
+    <!-- 使用数据库作为权限管理的来源,data-source-ref指定了数据源,所指定的数据源必须包含users,
+     authorities表,并符合security的定义规范 -->
+    <!--<beans:import resource="spring-config-datasource.xml"/>-->
+    <!--<authentication-provider>-->
+        <!--<jdbc-user-service data-source-ref="datasourceExample"-->
+                           <!--users-by-username-query=-->
+                                   <!--"SELECT username, password, true FROM EXAMPLE_USER_INFO WHERE username=?"-->
+                           <!--authorities-by-username-query=-->
+                                   <!--"SELECT username, role FROM EXAMPLE_USER_INFO WHERE username=?"/>-->
+    <!--</authentication-provider>-->
+
+</beans:beans>

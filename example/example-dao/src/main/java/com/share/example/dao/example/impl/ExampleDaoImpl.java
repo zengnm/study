@@ -1,10 +1,8 @@
 package com.share.example.dao.example.impl;
 
 import com.share.example.dao.BaseDao;
-import com.jd.common.util.Query;
 import com.share.example.dao.example.ExampleDao;
 import com.share.example.domain.example.Example;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

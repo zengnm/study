@@ -1,10 +1,7 @@
 package com.share.example.manager.example;
 
 import com.jd.common.util.PaginatedList;
-import com.jd.common.util.Query;
 import com.share.example.domain.example.Example;
-
-import java.util.List;
 
 /**
  * User: Administrator

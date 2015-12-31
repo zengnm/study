@@ -5,19 +5,20 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.support.TransactionTemplate;
 
 /**
- * Created by lihuiyan on 2015/6/30.
+ * @author zengnianmei
+ * @version 1.0, 2015/11/21.
  */
 public class BaseManager {
     protected SequenceUtil sequenceUtil;
 
-    private PlatformTransactionManager lotteryTransactionManager;
+    private PlatformTransactionManager transactionManager;
 
-    public TransactionTemplate getLotteryDataSourceTransactionManager() {
-        return new TransactionTemplate(lotteryTransactionManager);
+    public TransactionTemplate getExampleDataSourceTransactionManager() {
+        return new TransactionTemplate(transactionManager);
     }
 
-    public void setLotteryTransactionManager(PlatformTransactionManager lotteryTransactionManager) {
-        this.lotteryTransactionManager = lotteryTransactionManager;
+    public void setTransactionManager(PlatformTransactionManager transactionManager) {
+        this.transactionManager = transactionManager;
     }
 
     public void setSequenceUtil(SequenceUtil sequenceUtil) {
