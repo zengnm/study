@@ -44,6 +44,7 @@
     <select id="findExamplesPage" parameterType="com.share.example.domain.example.Example"  resultMap="ExampleResultMap">
         select <include refid="exampleAllRow"/> from example
         <include refid="condition"/>
+        order by id desc
     </select>
     <delete id="deleteExample" parameterType="com.share.example.domain.example.Example">
         DELETE

@@ -32,7 +32,8 @@ public class ExampleServiceImpl implements ExampleService {
         try {
             result.addDefaultModel("examples", exampleManager.findExamples(name, type, pageIndex, pageSize));
             Map<String, Object> map = new HashMap<String, Object>();
-            map.put("example.name", name);
+            map.put("name", name);
+            map.put("type", type);
             result.addDefaultModel("query", map);
             result.setSuccess(true);
         } catch (Exception e) {

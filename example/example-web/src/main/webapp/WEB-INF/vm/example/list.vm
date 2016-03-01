@@ -5,58 +5,50 @@
 #* @vtlvariable name="page" type="com.jd.common.util.PaginatedList" *#
 #* @vtlvariable name="exampleModule" type="com.jd.common.web.url.JdUrl" *#
 #set($title = "增删改查实例")
+<head>#showSimpleMessage()</head>
 
-<head>All：$message</head>
-#showSimpleMessage()
 <a href="$!exampleModule.getTarget("/example/add.action")">点击这儿新增</a>
 
-<form id="explF" action="list.action" method="get">
+<form id="explF" action="$!exampleModule.getTarget("/example/list.action")" method="get">
     <input id="exampleId" type="hidden" name="id" size="30" value="">
-    名称：<input type="text" name="name" />
-    类型：<input type="text" name="type" />
+    名称：<input type="text" name="name" value="$!query.name"/>
+    类型：<input type="text" name="type" value="$!query.type"/>
     <input type="submit"/>
 </form>
 
 <table border="1" style="outline:aqua" cellpadding="0" cellspacing="0" width="500">
     <thead>
+    <th>id</th>
     <th>名称</th>
     <th>类型</th>
-    <th>创建日期</th>
-    <th>删除</th>
-    <th>修改</th>
+    <th>创建时间</th>
+    <th>修改时间</th>
+    <th>操作</th>
     </thead>
     <tbody>
         #foreach($example in $examples)
         <tr>
+            <td>$!example.id</td>
             <td>$!example.name</td>
             <td>$!example.type</td>
             <td>$!dateFormatUtils.format($!example.created,"yyyy-MM-dd")</td>
+            <td>$!dateFormatUtils.format($!example.modified,"yyyy-MM-dd")</td>
             <td>
+                <a href="$!exampleModule.getTarget("/example/update.action").addQueryData("id", $!example.id)">edit</a>
                 <input type="button" onclick="rem('$!example.id');" value="delete">
-            </td>
-            <td>
-                <input type="button" onclick="edit('$!example.id');" value="edit">
             </td>
         </tr>
         #end
     </tbody>
 </table>
 
-#set($pageModule = $exampleModule.getTarget("/example/list.action").addQueryData("query",$!query).addQueryData(
-    "key",["a","b","c"]).addQueryData("pageSize",$!pageSize))
+#set($pageModule = $exampleModule.getTarget("/example/list.action").addQueryData("query",$!query).addQueryData("pageSize",$!pageSize))
 #showPage($pageModule $examples)
 
 <script type="text/javascript" src="/scripts/jquery/jquery-1.8.3.min.js"></script>
 <script type="text/javascript">
-    function query(){
-        $("#explF").attr('action','$!exampleModule.getTarget("/example/list.action")').submit();
-    }
     function rem(exampleId){
         $("#exampleId").val(exampleId);
         $("#explF").attr('action', '$!exampleModule.getTarget("/example/delete.action")').submit();
-    }
-    function edit(exampleId){
-        $("#exampleId").val(exampleId);
-        $("#explF").attr('action','$!exampleModule.getTarget("/example/update.action")').submit();
     }
 </script>

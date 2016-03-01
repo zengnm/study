@@ -27,8 +27,8 @@ public class ExampleController {
     private ExampleService exampleService;
 
     @RequestMapping(value = "/list")
-    public String list(Model model, String name, Integer type, Integer page){
-        Result result = exampleService.findExamples(name, type, page, 5);
+    public String list(Model model, String name, Integer type, Integer pageIndex){
+        Result result = exampleService.findExamples(name, type, pageIndex, 5);
         model.addAllAttributes(result.getMap());
         return "/example/list";
     }
@@ -46,7 +46,7 @@ public class ExampleController {
         HashMap map = new HashMap<String, Object>();
         map.put("result", exampleService.createExample(example));
         model.addAllAttributes(map);
-        return "/example/doAdd";
+        return "redirect:/example/list";
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
@@ -56,7 +56,7 @@ public class ExampleController {
         HashMap map = new HashMap<String, Object>();
         map.put("result", exampleService.deleteExample(example));
         model.addAllAttributes(map);
-        return "/example/doDelete";
+        return "redirect:/example/list";
     }
 
     @RequestMapping(value="/update", method = RequestMethod.GET)
@@ -77,7 +77,7 @@ public class ExampleController {
         HashMap map = new HashMap<String, Object>();
         map.put("result", exampleService.updateExample(example));
         model.addAllAttributes(map);
-        return "/example/doUpdate";
+        return "redirect:/example/list";
     }
 
     public ExampleService getExampleService() {

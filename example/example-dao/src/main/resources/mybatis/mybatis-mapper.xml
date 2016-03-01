@@ -9,6 +9,6 @@
     </settings>
 
     <mappers>
-        <mapper resource="mybatis/mysql/Example.xml"/>
+        <mapper resource="mybatis/mysql/example.xml"/>
     </mappers>
 </configuration>
