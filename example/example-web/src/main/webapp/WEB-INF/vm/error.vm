@@ -1,5 +1,5 @@
 #* @vtlvariable name="exception" type="java.lang.Exception" *#
-#* @vtlvariable name="result" type="com.jd.common.web.result.Result" *#
+#* @vtlvariable name="result" type="com.share.common.web.result.Result" *#
 #if($exception)
     #if($!exception.class.simpleName=="NoSuchMethodException")
         $!response.setStatus(404)

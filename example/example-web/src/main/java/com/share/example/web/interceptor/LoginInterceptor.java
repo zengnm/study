@@ -1,8 +1,6 @@
 package com.share.example.web.interceptor;
 
-//import com.jd.common.web.RequstPathExcluder;
-//import com.jd.passport.inteceptor.mvc.SpringMvcInterceptor;
-//import org.springframework.beans.factory.annotation.Autowired;
+
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

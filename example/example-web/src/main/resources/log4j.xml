@@ -77,17 +77,6 @@
         <appender-ref ref="FILE"/>
     </category>
 
-    <category name="com.jd.aop" additivity="false">
-        <priority value="${example.log.level}"/>
-        <appender-ref ref="FILE-AOP"/>
-        <appender-ref ref="FILE"/>
-    </category>
-
-    <category name="com.jd" additivity="true">
-        <priority value="${example.log.level}"/>
-        <appender-ref ref="FILE"/>
-    </category>
-
     <root>
         <priority value="${example.log.level}"/>
         <appender-ref ref="CONSOLE"/>

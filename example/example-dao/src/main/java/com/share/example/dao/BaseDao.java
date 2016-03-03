@@ -1,7 +1,7 @@
 package com.share.example.dao;
 
-import com.jd.dbs.DBSqlSessionTemplate;
-import com.jd.dbs.datasources.IDataSourceService;
+//import com.jd.dbs.DBSqlSessionTemplate;
+//import com.jd.dbs.datasources.IDataSourceService;
 import com.share.example.domain.BaseDomain;
 import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.session.Configuration;
@@ -46,18 +46,18 @@ public abstract class BaseDao {
      * @return
      * @throws Exception
      */
-    protected Connection getConnection() throws Exception{
-    	Connection conn = null;
-    	SqlSession current_sql_session = this.getSqlSession();
-    	if (current_sql_session instanceof DBSqlSessionTemplate) {
-			IDataSourceService dataSource = ((DBSqlSessionTemplate) current_sql_session).getDataSourceService();
-			Map<String, DataSource> mDateSource = dataSource.getDataSources();
-			conn = DataSourceUtils.getConnection(mDateSource.get(dataSource.getDefaultIdentity()));
-		} else {
-			conn = current_sql_session.getConnection();
-		}
-    	return conn;
-    }
+//    protected Connection getConnection() throws Exception{
+//    	Connection conn = null;
+//    	SqlSession current_sql_session = this.getSqlSession();
+//    	if (current_sql_session instanceof DBSqlSessionTemplate) {
+//			IDataSourceService dataSource = ((DBSqlSessionTemplate) current_sql_session).getDataSourceService();
+//			Map<String, DataSource> mDateSource = dataSource.getDataSources();
+//			conn = DataSourceUtils.getConnection(mDateSource.get(dataSource.getDefaultIdentity()));
+//		} else {
+//			conn = current_sql_session.getConnection();
+//		}
+//    	return conn;
+//    }
     
     /**
      * 获取配置信息
@@ -65,18 +65,18 @@ public abstract class BaseDao {
      * @return
      * @throws Exception
      */
-    protected Configuration getConfiguration() throws Exception{
-    	SqlSession sql_session=null;
-    	
-    	SqlSession current_sql_session = this.getSqlSession();
-    	if (current_sql_session instanceof DBSqlSessionTemplate) {
-			sql_session = ((DBSqlSessionTemplate) current_sql_session).getDefaultSession();
-		} else {
-			sql_session = current_sql_session;
-		}
-    	Configuration conf = sql_session.getConfiguration();
-    	return conf;
-    }
+//    protected Configuration getConfiguration() throws Exception{
+//    	SqlSession sql_session=null;
+//
+//    	SqlSession current_sql_session = this.getSqlSession();
+//    	if (current_sql_session instanceof DBSqlSessionTemplate) {
+//			sql_session = ((DBSqlSessionTemplate) current_sql_session).getDefaultSession();
+//		} else {
+//			sql_session = current_sql_session;
+//		}
+//    	Configuration conf = sql_session.getConfiguration();
+//    	return conf;
+//    }
 	
 	/**
 	 * 填充创建时间和更新时间
@@ -244,9 +244,9 @@ public abstract class BaseDao {
      * @return
      * @throws Exception
      */
-    protected MappedStatement getMappedStatement(String statement)  throws Exception{
-        return this.getConfiguration().getMappedStatement(statement);
-    }
+//    protected MappedStatement getMappedStatement(String statement)  throws Exception{
+//        return this.getConfiguration().getMappedStatement(statement);
+//    }
 
     protected int selectCount(String statement, Object parameter){
         return (null == this.selectOne(statement, parameter)) ? 0 : (Integer)this.selectOne(statement, parameter);

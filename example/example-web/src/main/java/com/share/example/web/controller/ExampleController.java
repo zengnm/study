@@ -1,6 +1,6 @@
 package com.share.example.web.controller;
 
-import com.jd.common.web.result.Result;
+import com.share.common.web.result.Result;
 import com.share.example.domain.example.Example;
 import com.share.example.service.example.ExampleService;
 import org.apache.log4j.Logger;
@@ -27,8 +27,8 @@ public class ExampleController {
     private ExampleService exampleService;
 
     @RequestMapping(value = "/list")
-    public String list(Model model, String name, Integer type, Integer pageIndex){
-        Result result = exampleService.findExamples(name, type, pageIndex, 5);
+    public String list(Model model, String name, Integer type, Integer page){
+        Result result = exampleService.findExamples(name, type, page, 5);
         model.addAllAttributes(result.getMap());
         return "/example/list";
     }

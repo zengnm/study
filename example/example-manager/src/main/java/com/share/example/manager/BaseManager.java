@@ -1,6 +1,6 @@
 package com.share.example.manager;
 
-import com.jd.common.util.SequenceUtil;
+import com.share.common.util.SequenceUtil;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.support.TransactionTemplate;
 

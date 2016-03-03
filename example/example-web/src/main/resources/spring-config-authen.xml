@@ -6,11 +6,6 @@
 						http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd"
        default-autowire="byName">
 
-
-    <!--<bean id="requstPathExcluder" class="com.jd.common.web.RequstPathExcluder">-->
-        <!--<property name="excludePath" value="/static,/hessian,/rest,/soap,/common"/>-->
-    <!--</bean>-->
-
     <mvc:interceptors>
         <!--<mvc:interceptor>-->
             <!--&lt;!&ndash; 需要登录的路径&ndash;&gt;-->

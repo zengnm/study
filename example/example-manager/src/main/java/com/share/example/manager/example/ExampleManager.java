@@ -1,6 +1,6 @@
 package com.share.example.manager.example;
 
-import com.jd.common.util.PaginatedList;
+import com.share.common.util.PaginatedList;
 import com.share.example.domain.example.Example;
 
 /**

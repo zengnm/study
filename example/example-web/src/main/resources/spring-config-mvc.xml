@@ -21,17 +21,8 @@
     <aop:aspectj-autoproxy expose-proxy="true"/>
     <context:annotation-config/>
 
-    <mvc:annotation-driven><!-- conversion-service="conversionService">-->
-        <!--<mvc:message-converters register-defaults="true">-->
-            <!--<bean class="com.jd.dujia.common.UTF8StringHttpMessageConverter">-->
-                <!--<property name="supportedMediaTypes">-->
-                    <!--<list>-->
-                        <!--<value>text/html;charset=UTF-8</value>-->
-                        <!--<value>application/json; charset=UTF-8</value>-->
-                    <!--</list>-->
-                <!--</property>-->
-            <!--</bean>-->
-        <!--</mvc:message-converters>-->
+    <mvc:annotation-driven>
+
     </mvc:annotation-driven>
     <mvc:default-servlet-handler/>
 
@@ -41,38 +32,30 @@
     <!-- 24 * 3600 * 10 -->
 
     <util:map id="velocityTools">
-        <!--系统本身的-->
-        <entry key="homeModule">
-            <bean class="com.jd.common.web.url.JdUrl">
-                <property name="url" value="http://${example.domain.name}/"/>
-            </bean>
-        </entry>
+        <!--系统本身的url-->
         <entry key="exampleModule">
-            <bean class="com.jd.common.web.url.JdUrl">
-                <property name="url" value="http://${example.domain.name}/"/>
+            <bean class="com.share.common.web.url.UrlBuilder">
+                <constructor-arg value="http://${example.domain.name}" />
             </bean>
         </entry>
         <entry key="stringEscapeUtils">
-            <bean class="com.jd.common.util.StringEscapeUtils"/>
+            <bean class="com.share.common.util.StringEscapeUtils"/>
         </entry>
         <entry key="dateFormatUtils">
-            <bean class="com.jd.common.util.DateFormatUtils"/>
+            <bean class="com.share.common.util.DateFormatUtils"/>
         </entry>
         <entry key="dateUtils">
             <bean class="org.apache.commons.lang.time.DateUtils"/>
         </entry>
         <entry key="localHost">
-            <bean class="com.jd.common.network.LocalHost"/>
+            <bean class="com.share.common.network.LocalHost"/>
         </entry>
         <entry key="decimalFormatUtils">
-            <bean class="com.jd.common.util.DecimalFormatUtils"/>
+            <bean class="com.share.common.util.DecimalFormatUtils"/>
         </entry>
         <entry key="numberUtils">
             <bean class="org.apache.commons.lang.math.NumberUtils"/>
         </entry>
-        <!--<entry key="encodeUtils">-->
-            <!--<bean class="com.jd.dujia.domain.util.EncodeUtils"/>-->
-        <!--</entry>-->
     </util:map>
 
     <!-- template view -->
@@ -117,26 +100,14 @@
         <property name="defaultErrorView" value="error"/>
         <property name="exceptionMappings">
             <props>
-                <!--<prop key="java.lang.RuntimeException">error/access-denied</prop>-->
-                <!--<prop key="com.jd.erp.info.exception.AssetEtmsException">error/access-denied</prop>-->
-                <!--<prop key="com.jd.erp.info.exception.AssetEtmsUserException">error/access-denied</prop>-->
-                <!--<prop key="com.jd.etms.info.exception.LockForCheckException">error/access-lock</prop>-->
-                <!--<prop key="org.springframework.web.multipart.MaxUploadSizeExceededException">error/access-img-error</prop>-->
                 <prop key="java.lang.RuntimeException">error</prop>
                 <prop key="java.lang.Exception">error</prop>
                 <prop key="java.lang.Throwable">error</prop>
-                <!--<prop key="com.jd.etms.info.exception.LockForCheckException">error/access-lock</prop>-->
                 <prop key="org.springframework.web.multipart.MaxUploadSizeExceededException">error</prop>
             </props>
         </property>
     </bean>
-    <!--<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">-->
-        <!--<property name="converters">-->
-            <!--<set>-->
-                <!--<bean class="com.jd.dujia.common.StringToDateConverter"/>-->
-            <!--</set>-->
-        <!--</property>-->
-    <!--</bean>-->
+
 
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <!-- -->

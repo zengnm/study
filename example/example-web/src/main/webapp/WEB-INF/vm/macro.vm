@@ -1,35 +1,49 @@
-#* @vtlvariable name="module" type="com.jd.common.web.url.JdUrl" *#
-#* @vtlvariable name="page" type="com.jd.common.util.base.PaginatedArrayList" *#
-
+#* @vtlvariable name="module" type="com.share.common.web.url.UrlBuilder" *#
+#* @vtlvariable name="page" type="com.share.common.util.base.PaginatedArrayList" *#
 #macro (showPage $module $page)
+
     #if($page)
         #set($pagePos = 2) ##当前页的尾巴长度
-        共$!{page.totalItem}条记录
-        #if($page.previousPageAvailable) ##如果能向上翻页
-        <a href="$module.addQueryData("pageIndex",$!{page.previousPage}).render()">上一页</a>
-        <a href="$module.addQueryData("pageIndex",1).render()">1</a>
+        #set($srcModule = $module)
+    <em>总$!{page.totalItem}行</em>
+    <em>$!{page.pageSize}行/页</em>
+    <em>总$!{page.totalPage}页</em>
+        #if($!page.index>1)
+        <em>当前第$!{page.index}页</em>
         #end
-        #if($!page.index>$pagePos+2) .. #end ##显示前面的省略号
+
+        #if($page.previousPageAvailable) ##如果能向上翻页
+        <a class="prev" href="$module.put("page",1).build()">首页</a>
+        <a class="prev" href="$module.put("page",$!{page.previousPage}).build()">上一页<b></b></a>
+        #else
+        <span class="prev-disabled">首页</span>
+        <span class="prev-disabled">上一页<b></b></span>
+        #end
+
         #foreach($i in [$pagePos..1]) ##增加前面的尾巴
             #if($!page.index - $i > 1)
                 #set($pageIndex= $!page.index - $i)
-            <a href="$module.addQueryData("pageIndex",$pageIndex).render()">$pageIndex</a>
+            <a href="$module.put("page",$pageIndex).build()">$pageIndex</a>
             #end
         #end
-    ，第<span>$!page.index</span>页 ##显示当前页号
+    <a class="current">$!page.index</a> ##显示当前页号
         #foreach($i in [1..$pagePos]) ##增加后面的尾巴
             #if($!page.totalPage - $!page.index - $i > 0)
                 #set($pageIndex= $!page.index + $!i)
-            <a href="$module.addQueryData("pageIndex",$pageIndex).render()">$pageIndex</a>
+            <a href="$module.put("page",$pageIndex).build()">$pageIndex</a>
             #end
         #end
-        #if($!page.totalPage - $!page.index > $pagePos+1) .. #end ##显示后面的省略号
+        #if($!page.totalPage - $!page.index > $pagePos+1) <span class="text">...</span> #end ##显示后面的省略号
         #if($page.nextPageAvailable) ##显示后面的页
-        <a href="$module.addQueryData("pageIndex",$!{page.totalPage}).render()">$!{page.totalPage}</a>
-        <a href="$module.addQueryData("pageIndex",$!{page.nextPage}).render()">下一页</a>
+        <a class="next" href="$module.put("page",$!{page.nextPage}).build()">下一页<b></b></a>
+        <a class="next" href="$module.put("page",$!{page.totalPage}).build()">尾页</a>
+        #else
+        <span class="next-disabled">下一页<b></b></span>
+        <span class="next-disabled">尾页</span>
         #end
-        $!module.reset()
+        #set($module = $srcModule)
     #end
+
 #end
 
 

@@ -1,6 +1,6 @@
 package com.share.example.service.example.impl;
 
-import com.jd.common.web.result.Result;
+import com.share.common.web.result.Result;
 import com.share.example.domain.example.Example;
 import com.share.example.manager.example.ExampleManager;
 import com.share.example.service.example.ExampleService;

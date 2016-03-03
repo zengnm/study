@@ -69,35 +69,6 @@
             <version>1.2</version>
         </dependency>
         <!-- solo end -->
-
-        <!--<dependency>-->
-        <!--<groupId>com.jd</groupId>-->
-        <!--<artifactId>erp-sso</artifactId>-->
-        <!--<version>1.0.5</version>-->
-        <!--<exclusions>-->
-        <!--<exclusion>-->
-        <!--<groupId>org.springframework</groupId>-->
-        <!--<artifactId>spring</artifactId>-->
-        <!--</exclusion>-->
-        <!--</exclusions>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-        <!--<groupId>com.jd.user.passport</groupId>-->
-        <!--<artifactId>passport-checkLogin</artifactId>-->
-        <!--<version>1.5.3-SNAPSHOT</version>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-        <!--<groupId>com.jd.passport</groupId>-->
-        <!--<artifactId>login-server-rpc</artifactId>-->
-        <!--<version>5.1.4-SNAPSHOT</version>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>com.jd.dujia</groupId>-->
-            <!--<artifactId>jd-dujia-service</artifactId>-->
-            <!--<version>1.0.0</version>-->
-        <!--</dependency>-->
-
-
         <dependency>
             <groupId>com.share.example</groupId>
             <artifactId>example-service</artifactId>
@@ -132,18 +103,18 @@
         <passport.checkLogin.uriEncoding>GBK</passport.checkLogin.uriEncoding>
 
         <!--datasource-->
-        <datasourceDujia.driverClassName>com.mysql.jdbc.Driver</datasourceDujia.driverClassName>
-        <datasourceDujia.url>jdbc:mysql://192.168.102.52:3306/popdb?characterEncoding=UTF-8</datasourceDujia.url>
-        <datasourceDujia.username>root</datasourceDujia.username>
-        <datasourceDujia.password>123456</datasourceDujia.password>
-        <datasourceDujia.defaultAutoCommit>false</datasourceDujia.defaultAutoCommit>
-        <datasourceDujia.initialSize>1</datasourceDujia.initialSize>
-        <datasourceDujia.maxActive>20</datasourceDujia.maxActive>
-        <datasourceDujia.maxIdle>5</datasourceDujia.maxIdle>
-        <datasourceDujia.minIdle>2</datasourceDujia.minIdle>
-        <datasourceDujia.maxWait>1000</datasourceDujia.maxWait>
-        <datasourceDujia.minEvictableIdleTimeMillis>300000</datasourceDujia.minEvictableIdleTimeMillis>
-        <datasourceDujia.timeBetweenEvictionRunsMillis>120000</datasourceDujia.timeBetweenEvictionRunsMillis>
+        <datasource.driverClassName>com.mysql.jdbc.Driver</datasource.driverClassName>
+        <datasource.url>jdbc:mysql://192.168.102.52:3306/popdb?characterEncoding=UTF-8</datasource.url>
+        <datasource.username>root</datasource.username>
+        <datasource.password>123456</datasource.password>
+        <datasource.defaultAutoCommit>false</datasource.defaultAutoCommit>
+        <datasource.initialSize>1</datasource.initialSize>
+        <datasource.maxActive>20</datasource.maxActive>
+        <datasource.maxIdle>5</datasource.maxIdle>
+        <datasource.minIdle>2</datasource.minIdle>
+        <datasource.maxWait>1000</datasource.maxWait>
+        <datasource.minEvictableIdleTimeMillis>300000</datasource.minEvictableIdleTimeMillis>
+        <datasource.timeBetweenEvictionRunsMillis>120000</datasource.timeBetweenEvictionRunsMillis>
     </properties>
 
     <build>

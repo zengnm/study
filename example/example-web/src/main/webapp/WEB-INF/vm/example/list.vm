@@ -1,15 +1,15 @@
 #* @vtlvariable name="example" type="com.share.example.domain.example.Example" *#
 #* @vtlvariable name="message" type="java.lang.Integer" *#
 #* @vtlvariable name="sequence" type="java.lang.Integer" *#
-#* @vtlvariable name="examples" type="com.jd.common.util.PaginatedList<com.share.example.domain.example.Example>" *#
-#* @vtlvariable name="page" type="com.jd.common.util.PaginatedList" *#
-#* @vtlvariable name="exampleModule" type="com.jd.common.web.url.JdUrl" *#
+#* @vtlvariable name="examples" type="com.share.common.util.PaginatedList<com.share.example.domain.example.Example>" *#
+#* @vtlvariable name="page" type="com.share.common.util.PaginatedList" *#
+#* @vtlvariable name="exampleModule" type="com.share.common.web.url.UrlBuilder" *#
 #set($title = "增删改查实例")
+hello,$!localHost.machineName<br>
 <head>#showSimpleMessage()</head>
+<a href="$!exampleModule.forPath("/example/add.action").build()">点击这儿新增</a>
 
-<a href="$!exampleModule.getTarget("/example/add.action")">点击这儿新增</a>
-
-<form id="explF" action="$!exampleModule.getTarget("/example/list.action")" method="get">
+<form id="explF" action="$!exampleModule.forPath("/example/list.action").build()" method="get">
     <input id="exampleId" type="hidden" name="id" size="30" value="">
     名称：<input type="text" name="name" value="$!query.name"/>
     类型：<input type="text" name="type" value="$!query.type"/>
@@ -34,7 +34,7 @@
             <td>$!dateFormatUtils.format($!example.created,"yyyy-MM-dd")</td>
             <td>$!dateFormatUtils.format($!example.modified,"yyyy-MM-dd")</td>
             <td>
-                <a href="$!exampleModule.getTarget("/example/update.action").addQueryData("id", $!example.id)">edit</a>
+                <a href="$!exampleModule.forPath("/example/update.action").put("id", $!example.id).build()">edit</a>
                 <input type="button" onclick="rem('$!example.id');" value="delete">
             </td>
         </tr>
@@ -42,13 +42,13 @@
     </tbody>
 </table>
 
-#set($pageModule = $exampleModule.getTarget("/example/list.action").addQueryData("query",$!query).addQueryData("pageSize",$!pageSize))
+#set($pageModule = $exampleModule.forPath("/example/list.action").put("query",$!query).put("pageSize",$!pageSize))
 #showPage($pageModule $examples)
 
 <script type="text/javascript" src="/scripts/jquery/jquery-1.8.3.min.js"></script>
 <script type="text/javascript">
     function rem(exampleId){
         $("#exampleId").val(exampleId);
-        $("#explF").attr('action', '$!exampleModule.getTarget("/example/delete.action")').submit();
+        $("#explF").attr('action', '$!exampleModule.forPath("/example/delete.action").build()').submit();
     }
 </script>

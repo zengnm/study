@@ -10,18 +10,18 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
     <!-- 生产库数据源配置 -->
     <bean id="datasourceExample" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-        <property name="driverClassName" value="${datasourceDujia.driverClassName}"/>
-        <property name="url" value="${datasourceDujia.url}"/>
-        <property name="username" value="${datasourceDujia.username}"/>
-        <property name="password" value="${datasourceDujia.password}"/>
-        <property name="defaultAutoCommit" value="${datasourceDujia.defaultAutoCommit}"/>
-        <property name="initialSize" value="${datasourceDujia.initialSize}"/>
-        <property name="maxActive" value="${datasourceDujia.maxActive}"/>
-        <property name="maxIdle" value="${datasourceDujia.maxIdle}"/>
-        <property name="minIdle" value="${datasourceDujia.minIdle}"/>
-        <property name="maxWait" value="${datasourceDujia.maxWait}"/>
-        <property name="minEvictableIdleTimeMillis" value="${datasourceDujia.minEvictableIdleTimeMillis}"/>
-        <property name="timeBetweenEvictionRunsMillis" value="${datasourceDujia.timeBetweenEvictionRunsMillis}"/>
+        <property name="driverClassName" value="${datasource.driverClassName}"/>
+        <property name="url" value="${datasource.url}"/>
+        <property name="username" value="${datasource.username}"/>
+        <property name="password" value="${datasource.password}"/>
+        <property name="defaultAutoCommit" value="${datasource.defaultAutoCommit}"/>
+        <property name="initialSize" value="${datasource.initialSize}"/>
+        <property name="maxActive" value="${datasource.maxActive}"/>
+        <property name="maxIdle" value="${datasource.maxIdle}"/>
+        <property name="minIdle" value="${datasource.minIdle}"/>
+        <property name="maxWait" value="${datasource.maxWait}"/>
+        <property name="minEvictableIdleTimeMillis" value="${datasource.minEvictableIdleTimeMillis}"/>
+        <property name="timeBetweenEvictionRunsMillis" value="${datasource.timeBetweenEvictionRunsMillis}"/>
     </bean>
 
     <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
@@ -41,11 +41,25 @@
 
     <aop:aspectj-autoproxy proxy-target-class="false" />
 
-    <bean id="defaultSequence" class="com.jd.common.util.Sequence">
-        <property name="dataSource" ref="datasourceExample" />
-        <property name="blockSize" value="30" />
+    <!-- sequence数据源 -->
+    <bean id="datasourceSequence" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="${datasource.driverClassName}"/>
+        <property name="url" value="${datasource.url}"/>
+        <property name="username" value="${datasource.username}"/>
+        <property name="password" value="${datasource.password}"/>
+        <property name="initialSize" value="${datasource.initialSize}"/>
+        <property name="maxActive" value="${datasource.maxActive}"/>
+        <property name="maxIdle" value="${datasource.maxIdle}"/>
+        <property name="minIdle" value="${datasource.minIdle}"/>
+        <property name="maxWait" value="${datasource.maxWait}"/>
+        <property name="minEvictableIdleTimeMillis" value="${datasource.minEvictableIdleTimeMillis}"/>
+        <property name="timeBetweenEvictionRunsMillis" value="${datasource.timeBetweenEvictionRunsMillis}"/>
     </bean>
-    <bean id="sequenceUtil" class="com.jd.common.util.SequenceUtil">
+    <bean id="defaultSequence" class="com.share.common.util.Sequence">
+        <property name="dataSource" ref="datasourceSequence" />
+        <property name="blockSize" value="3" />
+    </bean>
+    <bean id="sequenceUtil" class="com.share.common.util.SequenceUtil">
         <property name="defaultSequence" ref="defaultSequence" />
     </bean>
 </beans>
