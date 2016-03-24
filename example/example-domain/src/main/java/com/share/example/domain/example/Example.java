@@ -4,9 +4,8 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * User: Administrator
- * Date: 2010-4-15
- * Time: 18:10:05
+ * @author zengnianmei
+ * @version 1.0, 2015/11/21
  * @table example
  */
 public class Example implements Serializable{

@@ -8,9 +8,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
- * User: Administrator
- * Date: 2010-4-15
- * Time: 18:23:46
+ * @author zengnianmei
+ * @version 1.0, 2015/11/21
  */
 @Repository("ExampleDao")
 public class ExampleDaoImpl extends BaseDao implements ExampleDao {

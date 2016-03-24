@@ -5,9 +5,8 @@ import com.share.example.domain.example.Example;
  
 
 /**
- * User: yangsiyong@360buy.com
- * Date: 2010-4-16
- * Time: 11:37:51
+ * @author zengnianmei
+ * @version 1.0, 2015/11/21
  */
 public interface ExampleService {
     /**

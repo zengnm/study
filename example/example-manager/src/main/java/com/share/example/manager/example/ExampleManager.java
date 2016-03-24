@@ -4,9 +4,8 @@ import com.share.common.util.PaginatedList;
 import com.share.example.domain.example.Example;
 
 /**
- * User: Administrator
- * Date: 2010-4-19
- * Time: 14:03:00
+ * @author zengnianmei
+ * @version 1.0, 2015/11/21
  */
 public interface ExampleManager {
     /**

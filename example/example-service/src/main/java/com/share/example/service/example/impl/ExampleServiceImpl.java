@@ -13,9 +13,8 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 
 /**
- * User: yangsiyong@360buy.com
- * Date: 2010-4-16
- * Time: 11:38:09
+ * @author zengnianmei
+ * @version 1.0, 2015/11/21
  */
 @Service
 public class ExampleServiceImpl implements ExampleService {

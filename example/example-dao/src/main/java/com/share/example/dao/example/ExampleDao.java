@@ -4,9 +4,8 @@ import com.share.example.domain.example.Example;
 import java.util.List;
 
 /**
- * User: Administrator
- * Date: 2010-4-15
- * Time: 18:17:34
+ * @author zengnianmei
+ * @version 1.0, 2015/11/21
  */
 public interface ExampleDao {
     /**
