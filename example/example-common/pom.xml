@@ -11,7 +11,7 @@
 
     <artifactId>example-common</artifactId>
     <packaging>jar</packaging>
-    <name>example domain</name>
+    <name>example common</name>
     <dependencies>
         <dependency>
             <groupId>commons-logging</groupId>
