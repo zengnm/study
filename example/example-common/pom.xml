@@ -10,6 +10,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>example-common</artifactId>
+    <packaging>jar</packaging>
+    <name>example domain</name>
     <dependencies>
         <dependency>
             <groupId>commons-logging</groupId>
