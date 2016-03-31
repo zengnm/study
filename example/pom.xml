@@ -344,13 +344,13 @@
                         <bootclasspath>${java.home}/lib/rt.jar</bootclasspath>
                     </compilerArguments>-->
                 </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.codehaus.plexus</groupId>
-                        <artifactId>plexus-compiler-javac</artifactId>
-                        <version>1.8.1</version>
-                    </dependency>
-                </dependencies>
+                <!--<dependencies>-->
+                    <!--<dependency>-->
+                        <!--<groupId>org.codehaus.plexus</groupId>-->
+                        <!--<artifactId>plexus-compiler-javac</artifactId>-->
+                        <!--<version>1.8.1</version>-->
+                    <!--</dependency>-->
+                <!--</dependencies>-->
             </plugin>
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
