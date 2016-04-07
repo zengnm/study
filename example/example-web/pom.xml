@@ -78,8 +78,8 @@
 
     <properties>
         <!--log4j-->
-        <example.log.path>/logs-share-example/path</example.log.path>
-        <example.log.level>/logs-share-example/level</example.log.level>
+        <example.log.path>/export/data/tomcatRoot/example.share.com/logs</example.log.path>
+        <example.log.level>info</example.log.level>
 
         <!--获取资源文件的url-->
         <dujia.misc.domain.name>misc.360buyimg.com</dujia.misc.domain.name>
