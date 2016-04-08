@@ -57,7 +57,7 @@
         </layout>
     </appender>
 
-
+    <!--分类：包或文件为java.sql的日志记录方式-->
     <category name="java.sql" additivity="false">
         <priority value="${example.log.level}"/>
         <appender-ref ref="FILE-SQL"/>
