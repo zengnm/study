@@ -12,4 +12,6 @@
     <context:component-scan base-package="com.share.example.service" />
 
     <import resource="classpath:spring-config-datasource.xml" />
+    <!--<import resource="classpath:spring-dubbo-provider.xml"/>-->
+    <import resource="classpath:spring-dubbo-consumer.xml"/>
 </beans>
