@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8" />
+    <title>test</title>
+</head>
+<body>
+    <div>
+		Hello! $!userName </br>
+		日期：$!date.getDate()
+
+		<p>得到的数据为： </p> 
+		#foreach( $info in $list) 
+			id为：$info.tx_id <br/>
+			对应关系为：$info.tx_data -> $info.tx_data_name <br/>
+		#end　
+		
+	</div>
+</body>
+</html>
