@@ -5,9 +5,11 @@ import java.util.List;
 import com.berwin.cloud.model.BaseDate;
 import com.berwin.cloud.model.UserEntity;
 import com.berwin.cloud.service.BaseDateService;
+import com.berwin.cloud.util.RedisUtil;
 import com.berwin.cloud.util.WebHelper;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -54,5 +56,26 @@ public class HomeController {
 		model.addAttribute("list", list);
 		model.addAttribute("userName", WebHelper.getUser().getName());
 		return new ModelAndView("index");
+	}
+
+	/**
+	 * @Cacheable 参数：
+	 * value  指明缓存将被存到什么地方。
+	 * key   Spring默认使用被@Cacheable注解的方法的签名来作为key
+	 * condition = "#age < 25" 数将指明方法的返回结果是否被缓存。
+	 */
+	@RequestMapping("/cache")
+	@Cacheable(value = "test")
+	public String cache(){
+		RedisUtil.set("test", "测试");
+		System.out.println("cache success" + RedisUtil.get("test"));
+		return (String) RedisUtil.get("test");
+	}
+
+	@RequestMapping("/cache1")
+	@Cacheable(value = "test", keyGenerator ="keyGenerator")
+	public String cache1(){
+		System.out.println("进入方法啦");
+		return "success1";
 	}
 }
