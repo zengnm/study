@@ -27,8 +27,7 @@ import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 @EnableCaching
 public class RedisConfig extends CachingConfigurerSupport {
     /**
-     * 生成key的策略
-     *
+     * 生成key的策略: key=className+methodName+params[0...n-1]
      * @return
      */
     @Bean
@@ -49,11 +48,9 @@ public class RedisConfig extends CachingConfigurerSupport {
 
     /**
      * 管理缓存
-     *
      * @param redisTemplate
      * @return
      */
-    @SuppressWarnings("rawtypes")
     @Bean
     public CacheManager cacheManager(RedisTemplate redisTemplate) {
         RedisCacheManager rcm = new RedisCacheManager(redisTemplate);
@@ -61,25 +58,27 @@ public class RedisConfig extends CachingConfigurerSupport {
         // rcm.setDefaultExpiration(60);//秒
         //设置value的过期时间
         Map<String, Long> map = new HashMap();
-        map.put("test", 60L);
+        map.put("test", 60L);   //设置value=test即test~keys zset的缓存过期时间为60s
+        map.put("test1", 100L);
         rcm.setExpires(map);
         return rcm;
     }
 
     /**
      * RedisTemplate配置
-     *
      * @param factory
      * @return
      */
     @Bean
     public RedisTemplate<String, String> redisTemplate(RedisConnectionFactory factory) {
         StringRedisTemplate template = new StringRedisTemplate(factory);
+
         Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
         ObjectMapper om = new ObjectMapper();
         om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
         om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
         jackson2JsonRedisSerializer.setObjectMapper(om);
+
         template.setValueSerializer(jackson2JsonRedisSerializer);
         template.afterPropertiesSet();
         return template;

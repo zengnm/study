@@ -11,6 +11,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -59,23 +60,30 @@ public class HomeController {
 	}
 
 	/**
-	 * @Cacheable 参数：
-	 * value  指明缓存将被存到什么地方。
+	 * 读取缓存,如果没有则把返回值进行缓存
+	 * @Cacheable 参数说明：
+	 * value  必须的,指明缓存被缓存到什么地方(对应redis中的zset {value}~keys)。
 	 * key   Spring默认使用被@Cacheable注解的方法的签名来作为key
-	 * condition = "#age < 25" 数将指明方法的返回结果是否被缓存。
+	 * keyGenerator key生成器, 已在RedisConfig中配置
+	 * condition="#age<25" 数将指明方法的返回结果是否被缓存。
 	 */
-	@RequestMapping("/cache")
-	@Cacheable(value = "test")
-	public String cache(){
-		RedisUtil.set("test", "测试");
-		System.out.println("cache success" + RedisUtil.get("test"));
-		return (String) RedisUtil.get("test");
+	@RequestMapping("/get")
+	@Cacheable(value = "test", keyGenerator ="keyGenerator")
+	public String getTest(){
+		System.out.println("do getTest");
+		return "SUCCESS";
 	}
 
-	@RequestMapping("/cache1")
-	@Cacheable(value = "test", keyGenerator ="keyGenerator")
-	public String cache1(){
-		System.out.println("进入方法啦");
-		return "success1";
+	@RequestMapping("/getTest1/{key}")
+	@Cacheable(value = "test1", key="#key")
+	public String getTest1(@PathVariable String key){
+		System.out.println("do getTest1");
+		return "SUCCESS1";
+	}
+
+	@RequestMapping("/set/{key}/{value}")
+	public String setCache(@PathVariable String key, @PathVariable String value){
+		RedisUtil.set(key, value);
+		return key + "=" + RedisUtil.get(key);
 	}
 }
