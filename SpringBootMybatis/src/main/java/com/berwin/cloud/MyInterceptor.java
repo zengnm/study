@@ -4,6 +4,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.berwin.cloud.model.UserEntity;
+import com.berwin.cloud.util.WebHelper;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -17,8 +19,10 @@ public class MyInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
 
-        Object obj = request.getSession().getAttribute("cur_user");
-        if (obj == null || !(obj instanceof UserEntity)) {
+//        Object obj = request.getSession().getAttribute("cur_user");
+//        if (obj == null || !(obj instanceof UserEntity)) {
+        String pin = WebHelper.getPin();
+        if(StringUtils.isEmpty(pin)){
             response.sendRedirect(request.getContextPath() + "/login");
             return true;
         }

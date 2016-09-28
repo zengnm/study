@@ -2,6 +2,8 @@ package com.berwin.cloud.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import com.berwin.cloud.model.BaseDate;
 import com.berwin.cloud.model.UserEntity;
 import com.berwin.cloud.service.BaseDateService;
@@ -31,7 +33,7 @@ public class HomeController {
 	}
 
 	@RequestMapping(value="login",method=RequestMethod.POST)
-	public ModelAndView login(UserEntity user, RedirectAttributes redirect){
+	public ModelAndView login(UserEntity user, RedirectAttributes redirect, HttpServletResponse response){
 		// 登录校验
 //		try {
 //			user = loginService.login(user);
@@ -41,13 +43,25 @@ public class HomeController {
 //			redirect.addFlashAttribute("user", user);
 //			return new ModelAndView("redirect:/login");
 //		}
-		WebHelper.setUser(user);
+		//WebHelper.setUser(user);
+		WebHelper.setCookie(response, user);
 		return new ModelAndView("redirect:hello");
+	}
+
+	@RequestMapping("/pin")
+	public String getPin(){
+		return WebHelper.getPin();
+	}
+
+	@RequestMapping("/logout")
+	public ModelAndView logout(HttpServletResponse response){
+		WebHelper.delCookie(response);
+		return new ModelAndView("redirect:login");
 	}
 	
 	@RequestMapping("/hello")
 	public String hello(){
-		return "Hello World!" + WebHelper.getUser().getName();
+		return "Hello World!" + WebHelper.getPin();
 	}
 	
 	@RequestMapping("/data")
@@ -55,7 +69,7 @@ public class HomeController {
 		List<BaseDate> list = basedateService.find();
 		logger.info("查询得到的list为： " + list);
 		model.addAttribute("list", list);
-		model.addAttribute("userName", WebHelper.getUser().getName());
+		model.addAttribute("userName", WebHelper.getPin());
 		return new ModelAndView("index");
 	}
 
@@ -83,6 +97,7 @@ public class HomeController {
 
 	@RequestMapping("/set/{key}/{value}")
 	public String setCache(@PathVariable String key, @PathVariable String value){
+		System.out.println("是否已存在该key："+RedisUtil.exists(key));
 		RedisUtil.set(key, value);
 		return key + "=" + RedisUtil.get(key);
 	}
