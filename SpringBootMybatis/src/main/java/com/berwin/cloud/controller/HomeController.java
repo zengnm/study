@@ -61,7 +61,7 @@ public class HomeController {
 	
 	@RequestMapping("/hello")
 	public String hello(){
-		return "Hello World!" + WebHelper.getPin();
+		return "Hello World!" + WebHelper.getPin()+"," +WebHelper.getIpAddress();
 	}
 	
 	@RequestMapping("/data")
